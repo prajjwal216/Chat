@@ -1,14 +1,14 @@
 import React from 'react';
 import {Text, View, StyleSheet, Button} from 'react-native';
 
-export default Phoneverification = ({navigation}) => {
+export default Emailverification = ({navigation}) => {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Phoneverification</Text>
+      <Text>Emailverification</Text>
 
       <Button
         title="Continue"
-        onPress={() => navigation.navigate('Emailverification')}
+        onPress={() => navigation.navigate('Createprofile')}
       />
     </View>
   );
