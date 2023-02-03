@@ -2,34 +2,48 @@ import {StyleSheet} from 'react-native';
 import GLOBALS from '../../../../assets/index';
 const {FONTS, COLOR} = GLOBALS;
 const styles = StyleSheet.create({
-  text: {
-    fontFamily: FONTS.MulishBlack,
-    fontSize: 40,
-    colorbackground: '#58D582',
-  },
-  View: {
+  mainView: {
+    flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    flex: 1,
     backgroundColor: COLOR.WHITE,
   },
-  topView: {
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    flex: 0.7,
-  },
 
-  welcomeText: {
+  numberView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 20,
+    flex: 0.06,
+  },
+  number: {
+    height: 40,
+    flex: 1,
+    backgroundColor: '#F7F7FC',
+    borderRadius: 5,
+    marginLeft: 10,
+    paddingHorizontal: 10,
+    fontFamily: FONTS.MulishRegular,
+    fontSize: 16,
+  },
+  code: {
+    height: 40,
+    width: 70,
+    borderRadius: 5,
+    backgroundColor: '#F7F7FC',
+  },
+  mainHeading: {
     fontFamily: FONTS.MulishRegular,
     fontWeight: '700',
     fontSize: 20,
-    textAlign: 'center',
     color: COLOR.TEXTCOLOR,
+    marginBottom: 15,
   },
-  Policy: {
-    fontFamily: FONTS.MulishRegular,
-    marginBottom: 10,
+  text: {
     color: COLOR.TEXTCOLOR,
+    textAlign: 'center',
+    fontFamily: FONTS.MulishRegular,
+    fontSize: 16,
+    marginBottom: 20,
   },
   bottomView: {
     alignSelf: 'stretch',
