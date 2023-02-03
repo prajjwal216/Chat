@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import {TextInput, StyleSheet, View, Dimensions} from 'react-native';
+import GLOBALS from '../../../assets/index';
 
 const windowWidth = Dimensions.get('window').width;
+const {FONTS, COLOR} = GLOBALS;
 
-const CustomTextInput = ({style}) => {
+const CustomTextInput = ({style, placeholder}) => {
   const [value, setValue] = useState('');
 
   return (
     <View style={styles.container}>
       <TextInput
         style={[styles.input, style]}
-        placeholder="Enter text here"
+        placeholder={placeholder}
         onChangeText={text => setValue(text)}
         value={value}
       />
@@ -19,12 +21,19 @@ const CustomTextInput = ({style}) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: 'stretch',
+    width: '100%',
+  },
   input: {
     height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
+    backgroundColor: COLOR.BACK,
+    marginBottom: 10,
     padding: 10,
-    width: windowWidth,
+    borderRadius: 5,
+    fontFamily: FONTS.MulishRegular,
+    fontSize: 16,
+    color: COLOR.TEXTCOLOR,
   },
 });
 

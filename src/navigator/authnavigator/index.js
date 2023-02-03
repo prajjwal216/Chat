@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 export default function Authnavigation() {
   return (
     <Stack.Navigator initialRouteName="Introscreen">
-      <Stack.Screen name="Introscreen" component={Tabnavigation} />
+      <Stack.Screen name="Introscreen" component={Introscreen} />
       <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="Phoneverification" component={Phoneverification} />
       <Stack.Screen name="Emailverification" component={Emailverification} />
