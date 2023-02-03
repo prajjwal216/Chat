@@ -5,12 +5,11 @@ import Authnavigation from './navigator/authnavigator';
 import COLOR from '../assets/color';
 
 export default function App() {
-  Platform.OS === 'android'
-    ? StatusBar.setBackgroundColor(COLOR.PRIMARY)
-    : null;
+  Platform.OS === 'android' ? StatusBar.setBackgroundColor('white') : null;
 
   return (
     <View style={{flex: 1}}>
+      <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
       <SafeAreaView style={{backgroundColor: COLOR.PRIMARY}} />
       <NavigationContainer>
         <Authnavigation />
