@@ -152,7 +152,7 @@ const App = () => {
       <View
         style={{
           borderBottomColor: COLOR.PRIMARY,
-          borderBottomWidth: StyleSheet.hairlineWidth,
+
           height: 105,
         }}>
         <SwiperFlatList
@@ -272,8 +272,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   tabsContainer: {
-    height: 40,
-    marginVertical: 13,
+    height: 35,
+    marginVertical: 5,
     marginLeft: 10,
     marginRight: 10,
   },
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
   tabTextStyle: {
     color: COLOR.PRIMARY,
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 16,
   },
   activeTabTextStyle: {
     color: 'white',
