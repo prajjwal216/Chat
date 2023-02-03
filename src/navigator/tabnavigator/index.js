@@ -14,25 +14,19 @@ export default function Tabnavigation() {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={({route, navigation}) => ({
-        tabBarShowLabel: false,
+        tabBarShowLabel: true,
         headerTitleAlign: 'center',
         headerShown: false,
-        tabBarActiveBackgroundColor: COLOR.PRIMARY,
-        // headerStyle: {
-        //   backgroundColor: '',
-        //   borderBottomLeftRadius: 30,
-        //   borderBottomRightRadius: 30,
-        //   height: 60,
-        // },
-
         tabBarStyle: {
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          borderBottomRightRadius: 20,
-          borderBottomLeftRadius: 20,
+          margin: 20,
+          alignContent: 'center',
+          paddingBottom: 10,
+          height: 90,
+          borderRadius: 30,
+          backgroundColor: COLOR.PRIMARY,
         },
+        tabBarActiveTintColor: 'black',
         tabBarHideOnKeyboard: true,
-        tabBarActiveTintColor: 'white',
         headerTintColor: 'white',
         headerTitleStyle: {
           fontSize: 25,

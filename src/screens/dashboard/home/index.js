@@ -9,7 +9,6 @@ export default Home = () => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLOR.GREEN,
       }}>
       <Text>Home page</Text>
     </View>
