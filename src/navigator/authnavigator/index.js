@@ -6,6 +6,7 @@ import Phoneverification from '../../screens/auth/phoneverification';
 import Emailverification from '../../screens/auth/emailverification/index';
 import Createprofile from '../../screens/auth/createprofile';
 import Tabnavigation from '../tabnavigator';
+import Chatscreen from '../../screens/dashboard/chatscreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ export default function Authnavigation() {
       <Stack.Screen name="Emailverification" component={Emailverification} />
       <Stack.Screen name="Createprofile" component={Createprofile} />
       <Stack.Screen name="Tabnavigation" component={Tabnavigation} />
+      <Stack.Screen name="Chatscreen" component={Chatscreen} />
     </Stack.Navigator>
   );
 }

@@ -49,9 +49,8 @@ export default function Tabnavigation() {
           } else if (route.name === 'Calls') {
             iconName = focused ? 'call' : 'call-outline';
           } else if (route.name === 'Settings') {
-            iconName = focused ? 'settings' : 'settings-outline';
+            iconName = focused ? 'settings-sharp' : 'settings-outline';
           }
-
           return (
             <Icon
               name={iconName}

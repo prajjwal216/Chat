@@ -83,36 +83,6 @@ const DATA = [
   },
 ];
 
-const Item = ({name, message, image, date}) => (
-  <TouchableOpacity
-    activeOpacity={0.5}
-    onPress={() => Alert.alert('chat module in progress')}
-    style={styles.touchableOpacityStyle}>
-    <View style={styles.item}>
-      <View style={{flex: 0.4}}>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={() => Alert.alert('Profile photo in progress')}
-          style={styles.touchableOpacityStyle}>
-          <Image
-            source={IMAGE.profilePic}
-            style={styles.floatingButtonStyle}></Image>
-        </TouchableOpacity>
-      </View>
-
-      <View style={{flex: 1.2, flexDirection: 'row'}}>
-        <View style={{flex: 2}}>
-          <Text style={styles.title}>{name}</Text>
-          <Text style={styles.message}>{message}</Text>
-        </View>
-        <View style={{alignItems: 'flex-end', flex: 1}}>
-          <Text style={styles.date}>{date}</Text>
-        </View>
-      </View>
-    </View>
-  </TouchableOpacity>
-);
-
 const colors = [
   'tomato',
   'thistle',
@@ -140,7 +110,7 @@ const colors = [
   'teal',
 ];
 
-const App = () => {
+const App = ({navigation}) => {
   const [customStyleIndex, setCustomStyleIndex] = useState(0);
 
   const handleCustomIndexSelect = index => {
@@ -152,7 +122,6 @@ const App = () => {
       <View
         style={{
           borderBottomColor: COLOR.PRIMARY,
-
           height: 105,
         }}>
         <SwiperFlatList
@@ -198,12 +167,33 @@ const App = () => {
           <FlatList
             data={DATA}
             renderItem={({item}) => (
-              <Item
-                name={item.name}
-                message={item.message}
-                image={item.image}
-                date={item.date}
-              />
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={() => navigation.navigate('Chatscreen')}
+                style={styles.touchableOpacityStyle}>
+                <View style={styles.item}>
+                  <View style={{flex: 0.4}}>
+                    <TouchableOpacity
+                      activeOpacity={0.5}
+                      onPress={() => Alert.alert('Profile photo in progress')}
+                      style={styles.touchableOpacityStyle}>
+                      <Image
+                        source={IMAGE.profilePic}
+                        style={styles.floatingButtonStyle}></Image>
+                    </TouchableOpacity>
+                  </View>
+
+                  <View style={{flex: 1.2, flexDirection: 'row'}}>
+                    <View style={{flex: 2}}>
+                      <Text style={styles.title}>{item.name}</Text>
+                      <Text style={styles.message}>{item.message}</Text>
+                    </View>
+                    <View style={{alignItems: 'flex-end', flex: 1}}>
+                      <Text style={styles.date}>{item.date}</Text>
+                    </View>
+                  </View>
+                </View>
+              </TouchableOpacity>
             )}
             keyExtractor={item => item.id}
           />
@@ -214,12 +204,33 @@ const App = () => {
           <FlatList
             data={DATA}
             renderItem={({item}) => (
-              <Item
-                name={item.name}
-                message={item.message}
-                image={item.image}
-                date={item.date}
-              />
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={() => navigation.navigate('Chatscreen')}
+                style={styles.touchableOpacityStyle}>
+                <View style={styles.item}>
+                  <View style={{flex: 0.4}}>
+                    <TouchableOpacity
+                      activeOpacity={0.5}
+                      onPress={() => Alert.alert('Profile photo in progress')}
+                      style={styles.touchableOpacityStyle}>
+                      <Image
+                        source={IMAGE.profilePic}
+                        style={styles.floatingButtonStyle}></Image>
+                    </TouchableOpacity>
+                  </View>
+
+                  <View style={{flex: 1.2, flexDirection: 'row'}}>
+                    <View style={{flex: 2}}>
+                      <Text style={styles.title}>{item.name}</Text>
+                      <Text style={styles.message}>{item.message}</Text>
+                    </View>
+                    <View style={{alignItems: 'flex-end', flex: 1}}>
+                      <Text style={styles.date}>{item.date}</Text>
+                    </View>
+                  </View>
+                </View>
+              </TouchableOpacity>
             )}
             keyExtractor={item => item.id}
           />
