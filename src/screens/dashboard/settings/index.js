@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './style';
 
-export default Settings = () => {
+export default Settings = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.topcontainer_style}>
@@ -12,7 +12,10 @@ export default Settings = () => {
       </View>
 
       <View style={styles.body_container}>
-        <TouchableOpacity style={styles.touchableheading}>
+        <TouchableOpacity
+          style={styles.touchableheading}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('Account')}>
           <Text style={styles.heading}>Account</Text>
           <Icon
             name="chevron-forward-outline"
