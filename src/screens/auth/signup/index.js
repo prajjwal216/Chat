@@ -20,8 +20,6 @@ export default Signup = ({navigation}) => {
   const [countryFlag, setCountryFlag] = useState('🇮🇳');
   const [phone, setPhone] = useState('');
 
-  console.log('flag', countryFlag);
-
   const text = 'Please confirm your country code and enter\nyour phone number';
   return (
     <View style={styles.mainView}>
