@@ -4,8 +4,9 @@ import styles from './style';
 import CustomButton from '../../../components/common/CustomButton';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 
-export default Phoneverification = ({navigation}) => {
-  const text = 'We have sent you an SMS with the code';
+export default Phoneverification = ({route, navigation}) => {
+  const phnnumber = route.params.phone;
+  const text = `We have sent you an SMS with the code on ${phnnumber}`;
 
   return (
     <View style={styles.mainView}>
