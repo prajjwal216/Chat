@@ -12,7 +12,6 @@ import styles from './style';
 import {CountryPicker} from 'react-native-country-codes-picker';
 import CustomButton from '../../../components/common/CustomButton';
 import FONTS from '../../../assets/fonts';
-import phoneValidation from '../../../utils/validation';
 
 export default Signup = ({navigation}) => {
   const [show, setShow] = useState(false);
@@ -69,7 +68,11 @@ export default Signup = ({navigation}) => {
       <View style={styles.bottomView}>
         <CustomButton
           title={'Continue'}
-          onPress={() => navigation.navigate('Phoneverification')}
+          onPress={() =>
+            navigation.navigate('Phoneverification', {
+              phone: phone,
+            })
+          }
         />
       </View>
     </View>
