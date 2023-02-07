@@ -17,7 +17,7 @@ export default function Authnavigation() {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="Introscreen" component={Introscreen} />
       <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="Phoneverification" component={Phoneverification} />
+      {/* <Stack.Screen name="Phoneverification" component={Phoneverification} /> */}
       <Stack.Screen name="Createprofile" component={Createprofile} />
       <Stack.Screen name="Tabnavigation" component={Tabnavigation} />
       <Stack.Screen name="Chatscreen" component={Chatscreen} />

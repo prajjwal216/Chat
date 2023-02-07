@@ -6,6 +6,9 @@ import OTPInputView from '@twotalltotems/react-native-otp-input';
 
 export default Phoneverification = ({route, navigation}) => {
   const phnnumber = route.params.phone;
+  const confirmation = route.params.confirm;
+  console.log(confirmation, 'confirm');
+  console.log(phnnumber, 'phone');
   const text = `We have sent you an SMS with the code on ${phnnumber}`;
 
   return (
