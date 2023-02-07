@@ -1,7 +1,7 @@
 import {Image, Text, View} from 'react-native';
 import React from 'react';
 import styles from './style';
-import IMAGE from '../../../../assets/images';
+import IMAGE from '../../../assets/images';
 import CustomButton from '../../../components/common/CustomButton';
 
 const Introscreen = ({navigation}) => {

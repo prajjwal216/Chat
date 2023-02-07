@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Text, View, StyleSheet} from 'react-native';
-import GLOBALS from '../../../assets/index';
+import GLOBALS from '../../assets/index';
 const {FONTS} = GLOBALS;
 
 const CustomButton = ({title, onPress}) => (
