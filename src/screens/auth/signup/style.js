@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import GLOBALS from '../../../../assets/index';
+import GLOBALS from '../../../assets/index';
 const {FONTS, COLOR} = GLOBALS;
 const styles = StyleSheet.create({
   mainView: {

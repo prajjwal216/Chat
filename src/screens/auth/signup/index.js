@@ -11,7 +11,7 @@ import {
 import styles from './style';
 import {CountryPicker} from 'react-native-country-codes-picker';
 import CustomButton from '../../../components/common/CustomButton';
-import FONTS from '../../../../assets/fonts';
+import FONTS from '../../../assets/fonts';
 import phoneValidation from '../../../utils/validation';
 
 export default Signup = ({navigation}) => {

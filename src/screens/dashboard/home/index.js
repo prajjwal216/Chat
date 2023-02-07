@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet, TextInput} from 'react-native';
-import COLOR from '../../../../assets/color';
+import COLOR from '../../../assets/color';
 
 export default Home = () => {
   return (

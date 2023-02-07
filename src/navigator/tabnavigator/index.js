@@ -4,7 +4,7 @@ import Settings from '../../screens/dashboard/settings';
 import Calls from '../../screens/dashboard/call';
 import Chat from '../../screens/dashboard/chat';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import GLOBALS from '../../../assets/index';
+import GLOBALS from '../../assets/index';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Platform} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';

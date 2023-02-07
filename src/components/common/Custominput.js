@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {TextInput, StyleSheet, View, Dimensions} from 'react-native';
-import GLOBALS from '../../../assets/index';
+import GLOBALS from '../../assets/index';
 
 const windowWidth = Dimensions.get('window').width;
 const {FONTS, COLOR} = GLOBALS;

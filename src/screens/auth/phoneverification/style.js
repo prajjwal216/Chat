@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import GLOBALS from '../../../../assets/index';
+import GLOBALS from '../../../assets/index';
 const {FONTS, COLOR} = GLOBALS;
 const styles = StyleSheet.create({
   mainView: {

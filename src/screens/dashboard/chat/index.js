@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-import GLOBALS from '../../../../assets/index';
+import GLOBALS from '../../../assets/index';
 
 const {FONTS, COLOR, IMAGE} = GLOBALS;
 
