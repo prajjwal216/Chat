@@ -15,6 +15,7 @@ import CustomButton from '../../../components/common/CustomButton';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import FONTS from '../../../assets/fonts';
 import auth from '@react-native-firebase/auth';
+import firebase from '@react-native-firebase/app';
 
 export default Signup = ({navigation}) => {
   const [show, setShow] = useState(false);
@@ -28,9 +29,14 @@ export default Signup = ({navigation}) => {
     ToastAndroid.show('OTP sent successfully', ToastAndroid.BOTTOM);
     setConfirm(confirmation);
   };
+
   const confirmCode = async () => {
     try {
       const res = await confirm.confirm(otp);
+      firebase.auth().onAuthStateChanged(user => {
+        const uid = user.uid;
+        console.log(`User UID: ${uid}`);
+      });
       navigation.navigate('Createprofile');
     } catch (error) {
       console.log(error, 'error');

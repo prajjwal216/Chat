@@ -28,5 +28,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 10,
   },
+  floatingButtonStyle: {
+    resizeMode: 'contain',
+    width: 55,
+    height: 55,
+    borderRadius: 50,
+    borderWidth: 1,
+  },
 });
 export default styles;

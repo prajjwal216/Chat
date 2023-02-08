@@ -7,6 +7,7 @@ import {
   Text,
   StatusBar,
   Image,
+  TouchableWithoutFeedback,
   TouchableOpacity,
   Alert,
   Modal,
@@ -112,6 +113,7 @@ const colors = [
 
 const App = ({navigation}) => {
   const [customStyleIndex, setCustomStyleIndex] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const handleCustomIndexSelect = index => {
     setCustomStyleIndex(index);
@@ -129,9 +131,9 @@ const App = ({navigation}) => {
           renderItem={({item}) => (
             <View style={[styles.child]}>
               <TouchableOpacity
+                style={styles.touchableOpacityStyle}
                 activeOpacity={0.5}
-                onPress={() => Alert.alert('Alert Title')}
-                style={styles.touchableOpacityStyle}>
+                onPress={() => setModalVisible(true)}>
                 <Image
                   source={IMAGE.profilePic}
                   style={styles.floatingButtonStyle}></Image>
@@ -161,7 +163,6 @@ const App = ({navigation}) => {
         tabTextStyle={styles.tabTextStyle}
         activeTabTextStyle={styles.activeTabTextStyle}
       />
-
       {customStyleIndex === 0 && (
         <View>
           <FlatList
@@ -174,9 +175,9 @@ const App = ({navigation}) => {
                 <View style={styles.item}>
                   <View style={{flex: 0.4}}>
                     <TouchableOpacity
+                      style={styles.touchableOpacityStyle}
                       activeOpacity={0.5}
-                      onPress={() => Alert.alert('Profile photo in progress')}
-                      style={styles.touchableOpacityStyle}>
+                      onPress={() => setModalVisible(true)}>
                       <Image
                         source={IMAGE.profilePic}
                         style={styles.floatingButtonStyle}></Image>
@@ -212,7 +213,7 @@ const App = ({navigation}) => {
                   <View style={{flex: 0.4}}>
                     <TouchableOpacity
                       activeOpacity={0.5}
-                      onPress={() => Alert.alert('Profile photo in progress')}
+                      onPress={() => setModalVisible(true)}
                       style={styles.touchableOpacityStyle}>
                       <Image
                         source={IMAGE.profilePic}
@@ -236,6 +237,46 @@ const App = ({navigation}) => {
           />
         </View>
       )}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              backgroundColor: 'black',
+            }}>
+            <View style={{height: 360}}>
+              <View
+                style={{
+                  backgroundColor: 'white',
+                  height: 50,
+                  justifyContent: 'center',
+                }}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: 'black',
+                    marginLeft: 20,
+                  }}>
+                  Profile
+                </Text>
+              </View>
+              <Image
+                source={IMAGE.profilePic}
+                resizeMode="stretch"
+                style={{width: '100%', height: '86%'}}
+              />
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -276,7 +317,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 1,
   },
-
   child: {
     width: 70,
     marginTop: 15,
