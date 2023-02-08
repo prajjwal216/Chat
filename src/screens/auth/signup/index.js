@@ -29,15 +29,17 @@ export default Signup = ({navigation}) => {
     ToastAndroid.show('OTP sent successfully', ToastAndroid.BOTTOM);
     setConfirm(confirmation);
   };
-
   const confirmCode = async () => {
     try {
       const res = await confirm.confirm(otp);
       firebase.auth().onAuthStateChanged(user => {
         const uid = user.uid;
         console.log(`User UID: ${uid}`);
+        navigation.navigate('Createprofile', {
+          id: uid,
+          phone: phone,
+        });
       });
-      navigation.navigate('Createprofile');
     } catch (error) {
       console.log(error, 'error');
     }
