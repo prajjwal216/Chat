@@ -15,7 +15,7 @@ export default function Authnavigation() {
     <Stack.Navigator
       initialRouteName="Introscreen"
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Introscreen" component={Createprofile} />
+      <Stack.Screen name="Introscreen" component={Introscreen} />
       <Stack.Screen name="Signup" component={Signup} />
       {/* <Stack.Screen name="Phoneverification" component={Phoneverification} /> */}
       <Stack.Screen name="Createprofile" component={Createprofile} />

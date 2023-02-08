@@ -5,15 +5,13 @@ import GLOBALS from '../../assets/index';
 const windowWidth = Dimensions.get('window').width;
 const {FONTS, COLOR} = GLOBALS;
 
-const CustomTextInput = ({style, placeholder}) => {
-  const [value, setValue] = useState('');
-
+const CustomTextInput = ({style, placeholder, value, onChangeText}) => {
   return (
     <View style={styles.container}>
       <TextInput
         style={[styles.input, style]}
         placeholder={placeholder}
-        onChangeText={text => setValue(text)}
+        onChangeText={onChangeText}
         value={value}
       />
     </View>
