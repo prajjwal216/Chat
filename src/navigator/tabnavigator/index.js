@@ -61,7 +61,7 @@ export default function Tabnavigation() {
           );
         },
       })}>
-      <Tab.Screen name="Home" component={Home} />
+      {/* <Tab.Screen name="Home" component={Home} /> */}
       <Tab.Screen name="Chat" component={Chat} />
       <Tab.Screen name="Calls" component={Calls} />
       <Tab.Screen name="Settings" component={Settings} />

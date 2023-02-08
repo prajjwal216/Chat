@@ -5,6 +5,7 @@ import {
   View,
   Button,
   Image,
+  ToastAndroid,
   TouchableOpacity,
   TextInput,
 } from 'react-native';
@@ -12,11 +13,8 @@ import styles from './style';
 import {CountryPicker} from 'react-native-country-codes-picker';
 import CustomButton from '../../../components/common/CustomButton';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
-
 import FONTS from '../../../assets/fonts';
-
 import auth from '@react-native-firebase/auth';
-import phoneValidation from '../../../utils/validation';
 
 export default Signup = ({navigation}) => {
   const [show, setShow] = useState(false);
@@ -27,8 +25,8 @@ export default Signup = ({navigation}) => {
   const [confirm, setConfirm] = useState('');
   const signInWithPhoneNumber = async () => {
     const confirmation = await auth().signInWithPhoneNumber('+91' + phone);
+    ToastAndroid.show('OTP sent successfully', ToastAndroid.BOTTOM);
     setConfirm(confirmation);
-    console.log(confirm);
   };
   const confirmCode = async () => {
     try {
@@ -40,9 +38,17 @@ export default Signup = ({navigation}) => {
   };
 
   const text = 'Please confirm your country code and enter\nyour phone number';
+  const text1 = `We have sent you an SMS with the code\non ${phone}`;
+
   return (
-    <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-      {confirm === '' ? (
+    <View
+      style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'red',
+        flex: 1,
+      }}>
+      {confirm == '' ? (
         <View style={styles.mainView}>
           <View
             style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
@@ -109,11 +115,15 @@ export default Signup = ({navigation}) => {
               alignItems: 'center',
               flex: 1,
             }}>
-            <Text style={styles.mainHeading}>Enter Your Verification</Text>
-            <Text style={styles.text}>{text}</Text>
+            <Text style={styles.mainHeading}>Enter Your Verification Code</Text>
+            <Text style={styles.text}>{text1}</Text>
 
             <OTPInputView
-              style={{width: '50%', height: 200, marginRight: 20}}
+              style={{
+                width: '50%',
+                height: 200,
+                alignSelf: 'center',
+              }}
               pinCount={6}
               autoFocusOnLoad
               codeInputFieldStyle={styles.underlineStyleBase}

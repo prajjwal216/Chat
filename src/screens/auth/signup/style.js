@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: COLOR.WHITE,
+    alignSelf: 'stretch',
   },
-
   numberView: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -46,9 +46,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   mainHeading: {
-    fontFamily: FONTS.MulishRegular,
-    fontWeight: '700',
-    fontSize: 20,
+    fontFamily: FONTS.MulishBold,
+    fontSize: 24,
     color: COLOR.TEXTCOLOR,
     marginBottom: 15,
   },
@@ -65,6 +64,37 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 10,
     marginBottom: 10,
+  },
+  bottomView: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+    marginBottom: 10,
+  },
+
+  borderStyleBase: {
+    width: 35,
+    height: 45,
+  },
+
+  borderStyleHighLighted: {
+    borderColor: '#03DAC6',
+  },
+  underlineStyleBase: {
+    width: 50,
+    height: 50,
+    borderRadius: 10,
+    borderWidth: 4,
+    backgroundColor: '#f3f6f4',
+    color: 'black',
+    fontSize: 30,
+    padding: 5,
+    fontFamily: FONTS.MulishSemiBold,
+    marginLeft: 5,
+  },
+  underlineStyleHighLighted: {
+    borderColor: COLOR.PRIMARY,
   },
 });
 export default styles;
