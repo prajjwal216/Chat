@@ -1,13 +1,18 @@
 import React from 'react';
-import {Text, View, StyleSheet, Button} from 'react-native';
+import {Text, View, Image, StyleSheet, Button} from 'react-native';
 import CustomTextInput from '../../../components/common/Custominput';
 import CustomButton from '../../../components/common/CustomButton';
 import styles from './style';
+import GLOBALS from '../../../assets/index';
+
+const {FONTS, COLOR, IMAGE} = GLOBALS;
 
 export default Createprofile = ({navigation}) => {
   return (
     <View style={styles.main}>
-      <View style={styles.profilePic}></View>
+      <View>
+        <Image style={styles.profilePic} source={IMAGE.profilePic}></Image>
+      </View>
       <View style={styles.inputView}>
         <CustomTextInput placeholder={'Username (Required)'} />
         <CustomTextInput placeholder={'First Name (Required)'} />

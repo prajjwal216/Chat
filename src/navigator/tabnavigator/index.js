@@ -7,7 +7,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import GLOBALS from '../../assets/index';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Platform} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const {FONTS, COLOR} = GLOBALS;
 
@@ -18,6 +17,9 @@ export default function Tabnavigation() {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={({route, navigation}) => ({
+        tabBarItemStyle: {
+          paddingRight: 15,
+        },
         tabBarShowLabel: false,
         headerTitleAlign: 'center',
         headerShown: false,
@@ -28,7 +30,6 @@ export default function Tabnavigation() {
           shadowRadius: 40,
           shadowOffset: {},
           shadowColor: COLOR.SHADOW,
-          alignContent: 'center',
           height: 50,
           backgroundColor: COLOR.PRIMARY,
           borderRadius: 20,
