@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.MulishRegular,
     fontSize: 16,
     color: COLOR.TEXTCOLOR,
+    borderWidth: 1,
+    borderColor: COLOR.PRIMARY,
   },
 });
 
