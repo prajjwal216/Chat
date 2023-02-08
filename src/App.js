@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Text, View, StatusBar, SafeAreaView} from 'react-native';
+import {Text, View, StatusBar, LogBox, SafeAreaView} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import Authnavigation from './navigator/authnavigator';
 import COLOR from './assets/color';

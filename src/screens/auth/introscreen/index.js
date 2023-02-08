@@ -5,8 +5,7 @@ import IMAGE from '../../../assets/images';
 import CustomButton from '../../../components/common/CustomButton';
 
 const Introscreen = ({navigation}) => {
-  const text =
-    'Connect easily with your family and\nfriends worldwide with Void';
+  const text = 'Connect easily with your family and\nfriends worldwide';
   return (
     <View style={styles.View}>
       <View style={styles.topView}>

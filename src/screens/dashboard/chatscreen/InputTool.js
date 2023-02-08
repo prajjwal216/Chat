@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {InputToolbar, Send, View} from 'react-native-gifted-chat';
 import GLOBALS from '../../../assets/index';
 import Icon from 'react-native-vector-icons/Ionicons';
 const {FONTS, COLOR, IMAGE} = GLOBALS;
-import {Image} from 'react-native';
 
 export const renderInputToolbar = props => (
   <InputToolbar
@@ -29,7 +28,6 @@ export const renderSend = props => (
       backgroundColor: COLOR.PRIMARY,
       borderTopRightRadius: 30,
       borderBottomRightRadius: 30,
-
       width: '15%',
       height: '106%',
     }}>

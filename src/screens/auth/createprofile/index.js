@@ -18,7 +18,17 @@ export default Createprofile = ({navigation}) => {
       <View style={styles.bottomView}>
         <CustomButton
           title={'Continue'}
-          onPress={() => navigation.navigate('Tabnavigation')}
+          onPress={() => {
+            navigation.reset({
+              index: 1,
+              routes: [
+                {
+                  name: 'Tabnavigation',
+                  params: {someParam: 'Param1'},
+                },
+              ],
+            });
+          }}
         />
       </View>
     </View>
