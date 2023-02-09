@@ -9,7 +9,6 @@ import {
   Image,
   TouchableOpacity,
   Alert,
-  Modal,
 } from 'react-native';
 import GLOBALS from '../../../assets/index';
 import Icon from 'react-native-vector-icons/Ionicons';
