@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Text,
   FlatList,
@@ -9,32 +8,55 @@ import {
 } from 'react-native';
 import GLOBALS from '../../../assets/index';
 import Icon from 'react-native-vector-icons/Ionicons';
+import React, {useState, useEffect} from 'react';
+import firestore from '@react-native-firebase/firestore';
+import CustomTextInput from '../../../components/common/Custominput';
+
 const {FONTS, COLOR, IMAGE} = GLOBALS;
 
 export default function Userlist() {
-  const DATA = [
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      image: 'src/images/ic_chats_contacts.png',
-      name: 'Tarun Pal',
-      message: 'How are you',
-      date: '02/12/23',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      image: 'src/images/ic_chats_contacts.png',
-      name: 'Nikhil Arora',
-      message: 'How are you',
-      date: '02/12/23',
-    },
-  ];
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    const subscriber = firestore()
+      .collection('users')
+      .onSnapshot(querySnapshot => {
+        const usersData = [];
+        querySnapshot.forEach(documentSnapshot => {
+          usersData.push({
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
+          });
+        });
+        setUsers(usersData);
+        setFilteredUsers(users);
+      });
+
+    return () => subscriber();
+  }, []);
+  useEffect(() => {
+    setFilteredUsers(
+      users.filter(user =>
+        user.username.toLowerCase().includes(searchTerm.toLowerCase()),
+      ),
+    );
+  }, [searchTerm]);
+
   return (
     <>
       <View style={{flex: 1}}>
-        <View style={{flex: 0.1, backgroundColor: 'red'}}></View>
+        <View style={{flex: 0.1}}>
+          <CustomTextInput
+            value={searchTerm}
+            onChangeText={setSearchTerm}
+            placeholder="Search"
+          />
+        </View>
         <View style={{flex: 0.9}}>
           <FlatList
-            data={DATA}
+            data={filteredUsers}
             renderItem={({item}) => (
               <TouchableOpacity
                 activeOpacity={0.5}
@@ -63,11 +85,7 @@ export default function Userlist() {
 
                   <View style={{flex: 1.2, flexDirection: 'row'}}>
                     <View style={{flex: 2}}>
-                      <Text style={styles.title}>{item.name}</Text>
-                      <Text style={styles.message}>{item.message}</Text>
-                    </View>
-                    <View style={{alignItems: 'flex-end', flex: 1}}>
-                      <Text style={styles.date}>{item.date}</Text>
+                      <Text style={styles.title}>{item.username}</Text>
                     </View>
                   </View>
                 </View>

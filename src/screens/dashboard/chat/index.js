@@ -33,6 +33,48 @@ const DATA = [
     message: 'How are you',
     date: '02/12/23',
   },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    image: 'src/images/ic_chats_contacts.png',
+    name: 'Tarun Pal',
+    message: 'How are you',
+    date: '02/12/23',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    image: 'src/images/ic_chats_contacts.png',
+    name: 'Nikhil Arora',
+    message: 'How are you',
+    date: '02/12/23',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    image: 'src/images/ic_chats_contacts.png',
+    name: 'Tarun Pal',
+    message: 'How are you',
+    date: '02/12/23',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    image: 'src/images/ic_chats_contacts.png',
+    name: 'Nikhil Arora',
+    message: 'How are you',
+    date: '02/12/23',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    image: 'src/images/ic_chats_contacts.png',
+    name: 'Tarun Pal',
+    message: 'How are you',
+    date: '02/12/23',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    image: 'src/images/ic_chats_contacts.png',
+    name: 'Nikhil Arora',
+    message: 'How are you',
+    date: '02/12/23',
+  },
 ];
 
 const colors = [
@@ -205,6 +247,23 @@ const App = ({navigation}) => {
           />
         </View>
       )}
+
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={{
+          position: 'absolute',
+          bottom: 35,
+          right: 35,
+          backgroundColor: COLOR.WHITE,
+          borderRadius: 50,
+          width: 56,
+          height: 56,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        onPress={() => navigation.navigate('Userlist')}>
+        <Image source={IMAGE.contact} style={{width: 66, height: 66}} />
+      </TouchableOpacity>
       <Modal
         animationType="fade"
         transparent={true}
