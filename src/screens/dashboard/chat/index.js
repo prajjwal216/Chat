@@ -182,8 +182,7 @@ const App = ({navigation}) => {
                   <View style={{flex: 0.4}}>
                     <TouchableOpacity
                       activeOpacity={0.5}
-                      onPress={() => setModalVisible(true)}
-                      style={styles.touchableOpacityStyle}>
+                      onPress={() => setModalVisible(true)}>
                       <Image
                         source={IMAGE.profilePic}
                         style={styles.floatingButtonStyle}></Image>
