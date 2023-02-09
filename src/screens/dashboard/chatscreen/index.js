@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {GiftedChat} from 'react-native-gifted-chat';
 import {renderMessageText, renderBubble} from './MessageContainer';
-import {renderInputToolbar, renderSend, renderCustomView} from './InputTool';
+import {renderInputToolbar, renderSend, renderActions} from './InputTool';
 import Icon from 'react-native-vector-icons/Ionicons';
 import GLOBALS from '../../../assets/index';
 
@@ -113,8 +113,8 @@ export default function Chatscreen({navigation}) {
             alignTop={true}
             renderSend={renderSend}
             renderMessageText={renderMessageText}
-            placeholder="Type your message"
             renderInputToolbar={renderInputToolbar}
+            renderActions={renderActions}
             messages={messages}
             renderBubble={renderBubble}
             onSend={messages => onSend(messages)}

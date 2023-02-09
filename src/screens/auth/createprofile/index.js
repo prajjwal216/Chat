@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Text, View, Image, StyleSheet, Button} from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Button,
+} from 'react-native';
 import CustomTextInput from '../../../components/common/Custominput';
 import CustomButton from '../../../components/common/CustomButton';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -7,15 +14,19 @@ import ImageLoad from 'react-native-image-placeholder';
 import styles from './style';
 import firestore from '@react-native-firebase/firestore';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import CustomRadio from '../../../components/common/customRadio';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 import GLOBALS from '../../../assets/index';
 
 const {FONTS, COLOR, IMAGE} = GLOBALS;
 
 export default Createprofile = ({route, navigation}) => {
-  const id = route.params.id;
-  const phone = route.params.phone;
+  const id = route.params;
+  const phone = route.params;
 
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [dateofbirth, setdateofbirth] = useState('');
   const [username, setUsername] = useState('');
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -31,6 +42,25 @@ export default Createprofile = ({route, navigation}) => {
       dob: dob,
       gender: gender,
     });
+  };
+
+  const getDate = date => {
+    let tempDate = date.toString().split(' ');
+    return date !== '' ? `${tempDate[2]} ${tempDate[1]} ${tempDate[3]}` : '';
+  };
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = date => {
+    setdateofbirth(getDate(date));
+    hideDatePicker();
+    setFormData(Object.assign({}, formData, {dob: date}));
   };
 
   return (
@@ -68,18 +98,52 @@ export default Createprofile = ({route, navigation}) => {
             value={lastname}
             onChangeText={value => setLastname(value)}
           />
-          <CustomTextInput
-            placeholder={'Date Of Birth (Optional) '}
-            style={{marginTop: 5}}
-            value={dob}
-            onChangeText={value => setDob(value)}
-          />
-          <CustomTextInput
-            placeholder={'Gender (Optional)'}
-            style={{marginTop: 5}}
-            value={gender}
-            onChangeText={value => setGender(value)}
-          />
+          <View
+            style={{
+              flexDirection: 'row',
+              borderWidth: 1,
+              borderColor: COLOR.PRIMARY,
+              height: 40,
+              width: '100%',
+              backgroundColor: COLOR.LIGHTGREY,
+              borderRadius: 5,
+              fontSize: 16,
+              marginTop: 5,
+              marginBottom: 10,
+            }}>
+            <Text
+              style={{
+                fontFamily: FONTS.MulishRegular,
+                fontSize: 16,
+                alignSelf: 'center',
+                marginLeft: 10,
+                color: COLOR.BLACK,
+              }}>
+              {dateofbirth}
+            </Text>
+            <TouchableOpacity
+              style={{
+                alignItems: 'flex-end',
+                marginRight: 10,
+                flex: 0.99,
+              }}
+              onPress={showDatePicker}>
+              <Image
+                source={IMAGE.icon_calendar}
+                style={{height: 35, width: 35}}
+              />
+
+              <DateTimePicker
+                isVisible={isDatePickerVisible}
+                mode="date"
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
+                display={'inline'}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <CustomRadio label={'Gender'} selectedbtn={text => {}} />
         </View>
         <View style={styles.bottomView}>
           <CustomButton
