@@ -5,12 +5,14 @@ import {
   TouchableOpacity,
   Image,
   View,
+  Modal,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import GLOBALS from '../../../assets/index';
 import React, {useState, useEffect} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import SearchBar from 'react-native-dynamic-search-bar';
-import ImageLoad from 'react-native-image-placeholder';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const {FONTS, COLOR, IMAGE} = GLOBALS;
 
@@ -18,6 +20,8 @@ export default function Userlist() {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     const subscriber = firestore()
@@ -83,19 +87,37 @@ export default function Userlist() {
                   }}>
                   <View style={{flex: 0.4}}>
                     <TouchableOpacity
-                      style={styles.touchableOpacityStyle}
                       activeOpacity={0.5}
                       onPress={() => setModalVisible(true)}>
-                      <ImageLoad
-                        source={item.profilepic}
-                        style={styles.floatingButtonStyle}
-                      />
+                      {item.profilepic ? (
+                        <View>
+                          <Image
+                            style={styles.floatingButtonStyle}
+                            source={item.profilepic}
+                          />
+                        </View>
+                      ) : (
+                        <View style={styles.profileicon}>
+                          <Icon
+                            name="person-add-outline"
+                            size={40}
+                            style={{
+                              alignSelf: 'center',
+                              marginRight: 3,
+                              marginTop: 2,
+                            }}
+                          />
+                        </View>
+                      )}
                     </TouchableOpacity>
                   </View>
 
                   <View style={{flex: 1.2, flexDirection: 'row'}}>
                     <View style={{flex: 2}}>
                       <Text style={styles.title}>{item.username}</Text>
+                      <Text style={styles.phonenumber}>
+                        {item.phone_number}
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -104,6 +126,46 @@ export default function Userlist() {
             keyExtractor={item => item.id}
           />
         </View>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}>
+          <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                backgroundColor: 'black',
+              }}>
+              <View style={{height: 360}}>
+                <View
+                  style={{
+                    backgroundColor: 'white',
+                    height: 50,
+                    justifyContent: 'center',
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      fontWeight: 'bold',
+                      color: 'black',
+                      marginLeft: 20,
+                    }}>
+                    Profile
+                  </Text>
+                </View>
+                <Image
+                  source={IMAGE.profilePic}
+                  resizeMode="stretch"
+                  style={{width: '100%', height: '86%'}}
+                />
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </Modal>
       </View>
     </>
   );
@@ -125,8 +187,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontFamily: FONTS.MulishRegular,
+    fontFamily: FONTS.MulishBold,
     color: COLOR.TEXTCOLOR,
+  },
+  phonenumber: {
+    fontSize: 20,
+    fontFamily: FONTS.MulishRegular,
+    color: COLOR.SHADOW,
   },
   message: {
     fontSize: 17,
@@ -142,8 +209,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     width: 55,
     height: 55,
-    borderRadius: 50,
-    borderWidth: 1,
   },
   child: {
     width: 70,
@@ -170,5 +235,28 @@ const styles = StyleSheet.create({
   },
   activeTabTextStyle: {
     color: 'white',
+  },
+  floatingButtonStyle: {
+    resizeMode: 'contain',
+    width: 55,
+    height: 55,
+    borderRadius: 50,
+    borderWidth: 1,
+  },
+  profilePic: {
+    height: 180,
+    width: 180,
+    marginBottom: 30,
+    borderRadius: 100,
+    overflow: 'hidden',
+    position: 'absolute',
+  },
+  profileicon: {
+    resizeMode: 'contain',
+    width: 55,
+    height: 55,
+    borderRadius: 50,
+    borderWidth: 1,
+    backgroundColor: COLOR.LIGHTGREY,
   },
 });

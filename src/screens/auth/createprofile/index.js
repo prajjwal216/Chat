@@ -10,7 +10,6 @@ import {
 import CustomTextInput from '../../../components/common/Custominput';
 import CustomButton from '../../../components/common/CustomButton';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ImageLoad from 'react-native-image-placeholder';
 import styles from './style';
 import firestore from '@react-native-firebase/firestore';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -49,8 +48,6 @@ export default Createprofile = ({route, navigation}) => {
       gender: gender,
       profilepic: profilepic,
     };
-
-    console.log(data);
     firestore().collection('users').doc(id).set(data);
     ToastAndroid.show('Profile saved', ToastAndroid.BOTTOM);
     navigation.reset({
@@ -148,7 +145,20 @@ export default Createprofile = ({route, navigation}) => {
             onPress={() => {
               createThreeButtonAlert();
             }}>
-            <ImageLoad style={styles.profilePic} source={profilepic} />
+            {profilepic ? (
+              <View>
+                <Image style={styles.profilePic} source={profilepic} />
+              </View>
+            ) : (
+              <View style={styles.profileicon}>
+                <Icon
+                  name="person-add-outline"
+                  size={100}
+                  style={{alignSelf: 'center'}}
+                />
+              </View>
+            )}
+            <Image style={styles.profilePic} source={profilepic} />
             <Icon
               name="add-circle"
               size={40}
@@ -223,7 +233,6 @@ export default Createprofile = ({route, navigation}) => {
             label={'Gender'}
             selectedbtn={text => {
               setGender(text);
-              console.log(text, 'sjdjjdajdejowdoewifei');
             }}
           />
         </View>
