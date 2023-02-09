@@ -78,7 +78,7 @@ export default function Userlist() {
                       activeOpacity={0.5}
                       onPress={() => setModalVisible(true)}>
                       <Image
-                        source={IMAGE.profilePic}
+                        source={item.profilepic}
                         style={styles.floatingButtonStyle}></Image>
                     </TouchableOpacity>
                   </View>

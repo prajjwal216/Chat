@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Text, View, Alert, Image, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  Alert,
+  Image,
+  TouchableOpacity,
+  ToastAndroid,
+} from 'react-native';
 import CustomTextInput from '../../../components/common/Custominput';
 import CustomButton from '../../../components/common/CustomButton';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -9,7 +16,7 @@ import firestore from '@react-native-firebase/firestore';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import CustomRadio from '../../../components/common/customRadio';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
 import {
   checkGalleryPermission,
   checkCameraPermission,
@@ -20,27 +27,40 @@ import GLOBALS from '../../../assets/index';
 const {FONTS, COLOR, IMAGE} = GLOBALS;
 
 export default Createprofile = ({route, navigation}) => {
-  const id = route.params;
-  const phone = route.params;
+  const id = route.params.id;
+  const phone = route.params.phone;
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [dateofbirth, setdateofbirth] = useState('');
   const [username, setUsername] = useState('');
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
-  const [dob, setDob] = useState('');
+
   const [gender, setGender] = useState('');
   const [profilepic, setprofilepic] = useState('');
 
   const submit = () => {
-    firestore().collection('users').doc(id).set({
+    let data = {
       phone_number: phone,
       username: username,
       firstname: firstname,
       lastname: lastname,
-      dob: dob,
+      dob: dateofbirth,
       gender: gender,
       profilepic: profilepic,
+    };
+
+    console.log(data);
+    firestore().collection('users').doc(id).set(data);
+    ToastAndroid.show('Profile saved', ToastAndroid.BOTTOM);
+    navigation.reset({
+      index: 1,
+      routes: [
+        {
+          name: 'Tabnavigation',
+          params: {someParam: 'Param1'},
+        },
+      ],
     });
   };
 
@@ -93,41 +113,24 @@ export default Createprofile = ({route, navigation}) => {
   };
 
   const openCamera = () => {
-    const options = {
-      storageoptions: {
-        path: 'images',
-        mediaType: 'photo',
-      },
-      includeBase64: true,
-    };
-
-    launchCamera(options, res => {
-      if (res.didCancel) {
-      } else if (res.errorCode) {
-      } else if (res.assets[0].fileSize < 10000000) {
-        setprofilepic({uri: res.assets[0].uri});
-      } else {
-        Alert.alert('Image size should be less than 10 MB');
-      }
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      let source = {uri: image.path};
+      setprofilepic(source);
     });
   };
 
   const openGallery = () => {
-    const options = {
-      storageoptions: {
-        path: 'images',
-        mediaType: 'photo',
-      },
-      includeBase64: true,
-    };
-    launchImageLibrary(options, res => {
-      if (res.didCancel) {
-      } else if (res.errorCode) {
-      } else if (res.assets[0].fileSize < 10000000) {
-        setprofilepic({uri: res.assets[0].uri});
-      } else {
-        Alert.alert('Image size should be less than 10 MB');
-      }
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      let source = {uri: image.path};
+      setprofilepic(source);
     });
   };
 
@@ -216,24 +219,16 @@ export default Createprofile = ({route, navigation}) => {
             </TouchableOpacity>
           </View>
 
-          <CustomRadio label={'Gender'} selectedbtn={text => {}} />
+          <CustomRadio
+            label={'Gender'}
+            selectedbtn={text => {
+              setGender(text);
+              console.log(text, 'sjdjjdajdejowdoewifei');
+            }}
+          />
         </View>
         <View style={styles.bottomView}>
-          <CustomButton
-            title={'Continue'}
-            // onPress={() => {
-            //   navigation.reset({
-            //     index: 1,
-            //     routes: [
-            //       {
-            //         name: 'Tabnavigation',
-            //         params: {someParam: 'Param1'},
-            //       },
-            //     ],
-            //   });
-            // }}
-            onPress={() => submit()}
-          />
+          <CustomButton title={'Continue'} onPress={() => submit()} />
         </View>
       </View>
     </KeyboardAwareScrollView>
