@@ -13,6 +13,8 @@ import {
 const {FONTS, COLOR, IMAGE} = GLOBALS;
 
 export default Account = ({navigation}) => {
+  const [profilepic, setprofilepic] = useState('');
+
   const handlecamerapermission = () => {
     if (checkCameraPermission) {
       openCamera();
@@ -54,8 +56,7 @@ export default Account = ({navigation}) => {
       if (res.didCancel) {
       } else if (res.errorCode) {
       } else if (res.assets[0].fileSize < 10000000) {
-        setFilePath(res.assets[0]);
-        setPicture({uri: res.assets[0].uri});
+        setprofilepic({uri: res.assets[0].uri});
       } else {
         Alert.alert('Image size should be less than 10 MB');
       }
@@ -74,8 +75,7 @@ export default Account = ({navigation}) => {
       if (res.didCancel) {
       } else if (res.errorCode) {
       } else if (res.assets[0].fileSize < 10000000) {
-        setFilePath(res.assets[0]);
-        setPicture({uri: res.assets[0].uri});
+        setprofilepic({uri: res.assets[0].uri});
       } else {
         Alert.alert('Image size should be less than 10 MB');
       }
@@ -86,11 +86,11 @@ export default Account = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.topcontainer_style}>
         <TouchableOpacity onPress={createThreeButtonAlert}>
-          <ImageLoad style={styles.imageloadStyle} source={IMAGE.profilePic} />
+          <ImageLoad style={styles.imageloadStyle} source={profilepic} />
           <Icon
             name="camera"
             size={40}
-            color={'green'}
+            color={COLOR.WHITE}
             style={{
               alignSelf: 'center',
               marginTop: 180,

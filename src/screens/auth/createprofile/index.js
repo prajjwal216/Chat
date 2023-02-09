@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-  Button,
-} from 'react-native';
+import {Text, View, Alert, Image, TouchableOpacity} from 'react-native';
 import CustomTextInput from '../../../components/common/Custominput';
 import CustomButton from '../../../components/common/CustomButton';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -16,6 +9,11 @@ import firestore from '@react-native-firebase/firestore';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import CustomRadio from '../../../components/common/customRadio';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {
+  checkGalleryPermission,
+  checkCameraPermission,
+} from '../../../utils/permissions';
 
 import GLOBALS from '../../../assets/index';
 
@@ -32,6 +30,7 @@ export default Createprofile = ({route, navigation}) => {
   const [lastname, setLastname] = useState('');
   const [dob, setDob] = useState('');
   const [gender, setGender] = useState('');
+  const [profilepic, setprofilepic] = useState('');
 
   const submit = () => {
     firestore().collection('users').doc(id).set({
@@ -41,6 +40,7 @@ export default Createprofile = ({route, navigation}) => {
       lastname: lastname,
       dob: dob,
       gender: gender,
+      profilepic: profilepic,
     });
   };
 
@@ -63,6 +63,74 @@ export default Createprofile = ({route, navigation}) => {
     setFormData(Object.assign({}, formData, {dob: date}));
   };
 
+  const handlecamerapermission = () => {
+    if (checkCameraPermission) {
+      openCamera();
+    }
+  };
+
+  const handleGalleryPermission = () => {
+    if (checkGalleryPermission) {
+      openGallery();
+    }
+  };
+
+  const createThreeButtonAlert = () => {
+    Alert.alert('Upload profile', 'using', [
+      {
+        text: 'Open Camera',
+        onPress: () => handlecamerapermission(),
+      },
+      {
+        text: 'Open Gallery',
+        onPress: () => handleGalleryPermission(),
+      },
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+    ]);
+  };
+
+  const openCamera = () => {
+    const options = {
+      storageoptions: {
+        path: 'images',
+        mediaType: 'photo',
+      },
+      includeBase64: true,
+    };
+
+    launchCamera(options, res => {
+      if (res.didCancel) {
+      } else if (res.errorCode) {
+      } else if (res.assets[0].fileSize < 10000000) {
+        setprofilepic({uri: res.assets[0].uri});
+      } else {
+        Alert.alert('Image size should be less than 10 MB');
+      }
+    });
+  };
+
+  const openGallery = () => {
+    const options = {
+      storageoptions: {
+        path: 'images',
+        mediaType: 'photo',
+      },
+      includeBase64: true,
+    };
+    launchImageLibrary(options, res => {
+      if (res.didCancel) {
+      } else if (res.errorCode) {
+      } else if (res.assets[0].fileSize < 10000000) {
+        setprofilepic({uri: res.assets[0].uri});
+      } else {
+        Alert.alert('Image size should be less than 10 MB');
+      }
+    });
+  };
+
   return (
     <KeyboardAwareScrollView contentContainerStyle={{flexGrow: 1}}>
       <View style={styles.main}>
@@ -73,12 +141,17 @@ export default Createprofile = ({route, navigation}) => {
             justifyContent: 'center',
             height: 200,
           }}>
-          <ImageLoad style={styles.profilePic} source={IMAGE.profilePic} />
-          <Icon
-            name="add-circle"
-            size={40}
-            color={COLOR.PRIMARY}
-            style={{marginLeft: 150}}></Icon>
+          <TouchableOpacity
+            onPress={() => {
+              createThreeButtonAlert();
+            }}>
+            <ImageLoad style={styles.profilePic} source={profilepic} />
+            <Icon
+              name="add-circle"
+              size={40}
+              color={COLOR.PRIMARY}
+              style={{marginLeft: 150}}></Icon>
+          </TouchableOpacity>
         </View>
         <View style={styles.inputView}>
           <CustomTextInput
