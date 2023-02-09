@@ -6,12 +6,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: 20,
+    backgroundColor: COLOR.WHITE,
   },
   profilePic: {
     height: 180,
     width: 180,
     marginBottom: 30,
-    backgroundColor: COLOR.BACK,
     borderRadius: 100,
     overflow: 'hidden',
     position: 'absolute',

@@ -6,7 +6,7 @@ const COLOR = {
   RED: 'red',
   GREEN: 'green',
   TEXTCOLOR: '#0F1828',
-  BACK: '#F7F7FC',
+  LIGHTGREY: '#F7F7FC',
 };
 
 export default COLOR;

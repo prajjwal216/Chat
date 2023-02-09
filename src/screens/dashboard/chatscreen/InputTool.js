@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {InputToolbar, Send, View} from 'react-native-gifted-chat';
+import {Actions, InputToolbar, Send, View} from 'react-native-gifted-chat';
 import GLOBALS from '../../../assets/index';
 import Icon from 'react-native-vector-icons/Ionicons';
+import checkCameraPermission from '../../../utils/permissions';
 const {FONTS, COLOR, IMAGE} = GLOBALS;
 
 export const renderInputToolbar = props => (
@@ -17,6 +18,21 @@ export const renderInputToolbar = props => (
       borderTopColor: COLOR.PRIMARY,
       height: 53,
     }}
+  />
+);
+
+export const renderActions = props => (
+  <Actions
+    {...props}
+    containerStyle={{
+      position: 'absolute',
+      right: 75,
+      bottom: 5,
+    }}
+    onPressActionButton={() => {
+      checkCameraPermission();
+    }}
+    icon={() => <Icon name="camera-outline" size={28} color="black" />}
   />
 );
 
