@@ -25,7 +25,13 @@ const CustomRadio = ({name, rules = {}, label, selectedbtn}) => {
         textStyle={styles.text}
         data={data}
         selectedBtn={selectedbtn}
-        icon={<Icon name="radio-button-on-outline" size={25} color="#2c9dd1" />}
+        icon={
+          <Icon
+            name="radio-button-on-outline"
+            size={25}
+            color={COLOR.PRIMARY}
+          />
+        }
       />
     </View>
   );
@@ -56,8 +62,9 @@ const styles = StyleSheet.create({
   },
   box: {
     height: 40,
-    width: 160,
-    marginLeft: 4,
+    width: '50%',
+    borderColor: COLOR.PRIMARY,
+    marginLeft: 1,
   },
   text: {
     fontSize: 18,

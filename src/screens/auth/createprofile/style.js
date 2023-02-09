@@ -16,6 +16,18 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     position: 'absolute',
   },
+  profileicon: {
+    height: 180,
+    width: 180,
+    marginBottom: 30,
+    borderRadius: 100,
+    overflow: 'hidden',
+    position: 'absolute',
+    backgroundColor: COLOR.LIGHTGREY,
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: COLOR.PRIMARY,
+  },
   inputView: {
     flex: 0.7,
     alignSelf: 'stretch',
