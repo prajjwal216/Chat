@@ -15,6 +15,7 @@ import {
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import GLOBALS from '../../../assets/index';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 const {FONTS, COLOR, IMAGE} = GLOBALS;
 
@@ -145,124 +146,113 @@ const App = ({navigation}) => {
           )}
         />
       </View>
+      <View style={{flex: 0.93}}>
+        <SegmentedControlTab
+          values={['General', 'Groups']}
+          selectedIndex={customStyleIndex}
+          onTabPress={handleCustomIndexSelect}
+          borderRadius={10}
+          tabsContainerStyle={styles.tabsContainer}
+          tabStyle={styles.tabStyle}
+          activeTabStyle={styles.activeTabStyle}
+          tabTextStyle={styles.tabTextStyle}
+          activeTabTextStyle={styles.activeTabTextStyle}
+        />
+        {customStyleIndex === 0 && (
+          <View>
+            <FlatList
+              data={DATA}
+              renderItem={({item}) => (
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => navigation.navigate('Chatscreen')}
+                  style={styles.touchableOpacityStyle}>
+                  <View style={styles.item}>
+                    <View style={{flex: 0.4}}>
+                      <TouchableOpacity
+                        style={styles.touchableOpacityStyle}
+                        activeOpacity={0.5}
+                        onPress={() => setModalVisible(true)}>
+                        <Image
+                          source={IMAGE.profilePic}
+                          style={styles.floatingButtonStyle}></Image>
+                      </TouchableOpacity>
+                    </View>
 
+                    <View style={{flex: 1.2, flexDirection: 'row'}}>
+                      <View style={{flex: 2}}>
+                        <Text style={styles.title}>{item.name}</Text>
+                        <Text style={styles.message}>{item.message}</Text>
+                      </View>
+                      <View style={{alignItems: 'flex-end', flex: 1}}>
+                        <Text style={styles.date}>{item.date}</Text>
+                      </View>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              )}
+              keyExtractor={item => item.id}
+            />
+          </View>
+        )}
+        {customStyleIndex === 1 && (
+          <View>
+            <FlatList
+              data={DATA}
+              renderItem={({item}) => (
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => navigation.navigate('Chatscreen')}
+                  style={styles.touchableOpacityStyle}>
+                  <View style={styles.item}>
+                    <View style={{flex: 0.4}}>
+                      <TouchableOpacity
+                        activeOpacity={0.5}
+                        onPress={() => setModalVisible(true)}>
+                        <Image
+                          source={IMAGE.profilePic}
+                          style={styles.floatingButtonStyle}></Image>
+                      </TouchableOpacity>
+                    </View>
+
+                    <View style={{flex: 1.2, flexDirection: 'row'}}>
+                      <View style={{flex: 2}}>
+                        <Text style={styles.title}>{item.name}</Text>
+                        <Text style={styles.message}>{item.message}</Text>
+                      </View>
+                      <View style={{alignItems: 'flex-end', flex: 1}}>
+                        <Text style={styles.date}>{item.date}</Text>
+                      </View>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              )}
+              keyExtractor={item => item.id}
+            />
+          </View>
+        )}
+      </View>
       <TouchableOpacity
         activeOpacity={0.7}
         style={{
           position: 'absolute',
-          bottom: 35,
+          bottom: 20,
           right: 35,
-          backgroundColor: COLOR.WHITE,
           borderRadius: 50,
           width: 56,
           height: 56,
+          backgroundColor: COLOR.PRIMARY,
           justifyContent: 'center',
           alignItems: 'center',
         }}
         onPress={() => navigation.navigate('Userlist')}>
         <Image source={IMAGE.contact} style={{width: 66, height: 66}} />
-      </TouchableOpacity>
-
-      <SegmentedControlTab
-        values={['General', 'Groups']}
-        selectedIndex={customStyleIndex}
-        onTabPress={handleCustomIndexSelect}
-        borderRadius={10}
-        tabsContainerStyle={styles.tabsContainer}
-        tabStyle={styles.tabStyle}
-        activeTabStyle={styles.activeTabStyle}
-        tabTextStyle={styles.tabTextStyle}
-        activeTabTextStyle={styles.activeTabTextStyle}
-      />
-      {customStyleIndex === 0 && (
-        <View>
-          <FlatList
-            data={DATA}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                activeOpacity={0.5}
-                onPress={() => navigation.navigate('Chatscreen')}
-                style={styles.touchableOpacityStyle}>
-                <View style={styles.item}>
-                  <View style={{flex: 0.4}}>
-                    <TouchableOpacity
-                      style={styles.touchableOpacityStyle}
-                      activeOpacity={0.5}
-                      onPress={() => setModalVisible(true)}>
-                      <Image
-                        source={IMAGE.profilePic}
-                        style={styles.floatingButtonStyle}></Image>
-                    </TouchableOpacity>
-                  </View>
-
-                  <View style={{flex: 1.2, flexDirection: 'row'}}>
-                    <View style={{flex: 2}}>
-                      <Text style={styles.title}>{item.name}</Text>
-                      <Text style={styles.message}>{item.message}</Text>
-                    </View>
-                    <View style={{alignItems: 'flex-end', flex: 1}}>
-                      <Text style={styles.date}>{item.date}</Text>
-                    </View>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            )}
-            keyExtractor={item => item.id}
-          />
-        </View>
-      )}
-      {customStyleIndex === 1 && (
-        <View>
-          <FlatList
-            data={DATA}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                activeOpacity={0.5}
-                onPress={() => navigation.navigate('Chatscreen')}
-                style={styles.touchableOpacityStyle}>
-                <View style={styles.item}>
-                  <View style={{flex: 0.4}}>
-                    <TouchableOpacity
-                      activeOpacity={0.5}
-                      onPress={() => setModalVisible(true)}>
-                      <Image
-                        source={IMAGE.profilePic}
-                        style={styles.floatingButtonStyle}></Image>
-                    </TouchableOpacity>
-                  </View>
-
-                  <View style={{flex: 1.2, flexDirection: 'row'}}>
-                    <View style={{flex: 2}}>
-                      <Text style={styles.title}>{item.name}</Text>
-                      <Text style={styles.message}>{item.message}</Text>
-                    </View>
-                    <View style={{alignItems: 'flex-end', flex: 1}}>
-                      <Text style={styles.date}>{item.date}</Text>
-                    </View>
-                  </View>
-                </View>
-              </TouchableOpacity>
-            )}
-            keyExtractor={item => item.id}
-          />
-        </View>
-      )}
-
-      <TouchableOpacity
-        activeOpacity={0.7}
-        style={{
-          position: 'absolute',
-          bottom: 35,
-          right: 35,
-          backgroundColor: COLOR.WHITE,
-          borderRadius: 50,
-          width: 56,
-          height: 56,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-        onPress={() => navigation.navigate('Userlist')}>
-        <Image source={IMAGE.contact} style={{width: 66, height: 66}} />
+        {/* <Entypo
+          name="add-to-list"
+          size={30}
+          color={COLOR.WHITE}
+          style={{marginLeft: 5}}
+        /> */}
       </TouchableOpacity>
       <Modal
         animationType="fade"

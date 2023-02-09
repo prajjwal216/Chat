@@ -7,10 +7,10 @@ import {
   View,
 } from 'react-native';
 import GLOBALS from '../../../assets/index';
-import Icon from 'react-native-vector-icons/Ionicons';
 import React, {useState, useEffect} from 'react';
 import firestore from '@react-native-firebase/firestore';
-import CustomTextInput from '../../../components/common/Custominput';
+import SearchBar from 'react-native-dynamic-search-bar';
+import ImageLoad from 'react-native-image-placeholder';
 
 const {FONTS, COLOR, IMAGE} = GLOBALS;
 
@@ -47,16 +47,25 @@ export default function Userlist() {
   return (
     <>
       <View style={{flex: 1}}>
-        <View style={{flex: 0.1}}>
-          <CustomTextInput
+        <View
+          style={{
+            flex: 0.08,
+            backgroundColor: COLOR.PRIMARY,
+            justifyContent: 'center',
+            paddingHorizontal: 6,
+          }}>
+          <SearchBar
+            placeholder="Search here"
+            backgroundColor="white"
             value={searchTerm}
             onChangeText={setSearchTerm}
-            placeholder="Search"
+            style={{width: '100%'}}
           />
         </View>
-        <View style={{flex: 0.9}}>
+
+        <View style={{flex: 0.9, marginTop: 10}}>
           <FlatList
-            data={filteredUsers}
+            data={searchTerm === '' ? users : filteredUsers}
             renderItem={({item}) => (
               <TouchableOpacity
                 activeOpacity={0.5}
@@ -77,9 +86,10 @@ export default function Userlist() {
                       style={styles.touchableOpacityStyle}
                       activeOpacity={0.5}
                       onPress={() => setModalVisible(true)}>
-                      <Image
+                      <ImageLoad
                         source={item.profilepic}
-                        style={styles.floatingButtonStyle}></Image>
+                        style={styles.floatingButtonStyle}
+                      />
                     </TouchableOpacity>
                   </View>
 
