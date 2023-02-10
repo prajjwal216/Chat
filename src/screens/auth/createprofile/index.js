@@ -16,6 +16,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import CustomRadio from '../../../components/common/customRadio';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import ImagePicker from 'react-native-image-crop-picker';
+import storage from '@react-native-firebase/storage';
 import {
   checkGalleryPermission,
   checkCameraPermission,
@@ -38,6 +39,17 @@ export default Createprofile = ({route, navigation}) => {
   const [gender, setGender] = useState('');
   const [profilepic, setprofilepic] = useState('');
 
+  let imageUrl = '';
+
+  if (profilepic != '') {
+    const reference = storage().ref(`/Profilepic/${id}`);
+    reference.putFile(profilepic.uri).then(() => {
+      console.log('Image Uploaded');
+    });
+    imageUrl = reference.getDownloadURL();
+    console.log(imageUrl);
+  }
+
   const submit = () => {
     let data = {
       phone_number: phone,
@@ -46,7 +58,7 @@ export default Createprofile = ({route, navigation}) => {
       lastname: lastname,
       dob: dateofbirth,
       gender: gender,
-      profilepic: profilepic,
+      profilepic: imageUrl,
     };
     firestore().collection('users').doc(id).set(data);
     ToastAndroid.show('Profile saved', ToastAndroid.BOTTOM);
