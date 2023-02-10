@@ -93,7 +93,7 @@ export default function Userlist() {
                         <View>
                           <Image
                             style={styles.floatingButtonStyle}
-                            source={item.profilepic}
+                            source={{uri: item.profilepic._j}}
                           />
                         </View>
                       ) : (
