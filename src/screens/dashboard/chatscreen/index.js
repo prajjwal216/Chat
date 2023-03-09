@@ -76,7 +76,7 @@ export default function Chatscreen({navigation}) {
         </TouchableOpacity>
         <Image
           style={styles.userProfileImage}
-          source={{uri: chatUser.profile_image}}
+          source={{uri: chatUser.profile_image}}    
         />
         <View
           style={{
